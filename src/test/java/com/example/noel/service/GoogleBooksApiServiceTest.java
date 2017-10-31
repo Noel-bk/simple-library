@@ -20,6 +20,6 @@ public class GoogleBooksApiServiceTest {
     @Test
     public void getBookInfo() throws Exception {
         Object bookInfo = googleBooksApiService.getBookInfo(THE_MARTIAN_ISBN);
-        log.warn("{}", bookInfo);
+        log.info("{}", bookInfo);
     }
 }

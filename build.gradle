@@ -27,6 +27,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-thymeleaf')
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.projectlombok:lombok:1.16.18')
+    compile('io.sentry:sentry-logback:1.6.1')
 
     runtime('org.springframework.boot:spring-boot-devtools')
     runtime('com.h2database:h2')
