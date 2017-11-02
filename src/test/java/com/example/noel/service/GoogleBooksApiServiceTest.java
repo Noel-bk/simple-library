@@ -19,7 +19,7 @@ public class GoogleBooksApiServiceTest {
 
     @Test
     public void getBookInfo() throws Exception {
-        Object bookInfo = googleBooksApiService.getBookInfo(THE_MARTIAN_ISBN);
+        Object bookInfo = googleBooksApiService.getBook(THE_MARTIAN_ISBN);
         log.info("{}", bookInfo);
     }
 }

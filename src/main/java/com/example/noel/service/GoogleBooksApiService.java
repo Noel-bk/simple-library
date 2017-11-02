@@ -13,8 +13,8 @@ public class GoogleBooksApiService {
 
     private RestTemplate restTemplate;
 
-    // TODO: Create BookInfo Class
-    public Object getBookInfo(String isbn) {
+    // TODO Object -> Book
+    public Object getBook(String isbn) {
         restTemplate = new RestTemplate();
         Object obj = restTemplate.getForObject(constructUriWithQueryParameter(isbn), Object.class);
         return obj;
