@@ -1,8 +1,7 @@
 package com.example.noel.apis;
 
+import com.example.noel.dto.BookDto;
 import com.example.noel.entity.Book;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,17 +14,12 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.io.IOException;
-
 @Service
 @Slf4j
 public class KakaoApi {
 
     @Autowired
     private RestTemplate restTemplate;
-
-    @Autowired
-    private ObjectMapper mapper;
 
     @Value("${kakao.rest.app.key}")
     private String REST_APP_KEY;
@@ -38,31 +32,18 @@ public class KakaoApi {
         UriComponents uriComponents = createUriComponents(isbn);
         HttpEntity<?> entity = new HttpEntity<>(createHeaders());
 
-        ResponseEntity<String> response = restTemplate.exchange(
+        ResponseEntity<BookDto> response = restTemplate.exchange(
             uriComponents.encode().toUri(),
             HttpMethod.GET,
             entity,
-            String.class);
+            BookDto.class);
+        log.debug("response = {}", response);
+        BookDto bookDto = response.getBody();
+        log.debug("bookDto = {}", bookDto);
 
-        log.debug("response = {}", response.getBody());
+        // TODO
+        return bookDto.getDocuments().get(0);
 
-        try {
-            JsonNode root = mapper.readTree(response.getBody());
-            log.debug("root = {}", root);
-
-            JsonNode documents = root.findPath("documents");
-            log.debug("documents = {}", documents);
-
-            Book book = mapper.readValue(documents.get(0).toString(), Book.class);
-            log.debug("Book = {}", book);
-            return book;
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            // TODO
-        }
-
-        return null;
     }
 
     private UriComponents createUriComponents(String isbn) {
