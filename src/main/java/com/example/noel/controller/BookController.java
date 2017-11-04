@@ -1,6 +1,7 @@
 package com.example.noel.controller;
 
-import com.example.noel.service.GoogleBooksApiService;
+import com.example.noel.apis.KakaoApi;
+import com.example.noel.entity.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,10 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class BookController {
 
     @Autowired
-    private GoogleBooksApiService googleBooksApiService;
+    private KakaoApi kakaoApi;
 
     @GetMapping(value = "/{isbn}")
-    public Object getBook(@PathVariable String isbn) {
-        return googleBooksApiService.getBook(isbn);
+    public Book getBook(@PathVariable String isbn) {
+        return kakaoApi.getBook(isbn);
     }
+
 }
