@@ -1,10 +1,7 @@
 package com.example.noel.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -17,6 +14,7 @@ import java.util.List;
 @Setter
 @ToString
 @AllArgsConstructor
+@NoArgsConstructor
 public class Book {
 
     @Id
