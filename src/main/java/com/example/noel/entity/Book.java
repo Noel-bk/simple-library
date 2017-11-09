@@ -7,6 +7,7 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.time.Instant;
 import java.util.List;
 
 @Entity
@@ -32,5 +33,6 @@ public class Book {
     @JsonProperty(value = "contents")
     private String description;
     private String category;
+    private Instant createdAt;
 
 }
